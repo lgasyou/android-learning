@@ -13,10 +13,11 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.first_layout.*
 import java.net.URI
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.first_layout)
+        Log.v("FirstActivity", "task is $taskId")
 //        button1.setOnClickListener {
 //            val intent = Intent(this, SecondActivity::class.java)
 //            startActivity(intent)
@@ -35,24 +36,29 @@ class FirstActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        button1.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("tel:10086")
-            startActivity(intent)
-        }
+//        button1.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_VIEW)
+//            intent.data = Uri.parse("tel:10086")
+//            startActivity(intent)
+//        }
+//
+//        button1.setOnClickListener {
+//            val intent = Intent("bit.lizeqing.activitytest.ACTION_START")
+//            intent.addCategory("bit.lizeqing.activitytest.MY_CATEGORY")
+//            intent.putExtra("extra_data", "Hello SecondActivity")
+//            startActivity(intent)
+//        }
+//
+//        button1.setOnClickListener {
+//            val intent = Intent("bit.lizeqing.activitytest.ACTION_START")
+//            intent.addCategory("bit.lizeqing.activitytest.MY_CATEGORY")
+//            intent.putExtra("extra_data", "Hello SecondActivity")
+//            startActivityForResult(intent, 1)
+//        }
 
         button1.setOnClickListener {
-            val intent = Intent("bit.lizeqing.activitytest.ACTION_START")
-            intent.addCategory("bit.lizeqing.activitytest.MY_CATEGORY")
-            intent.putExtra("extra_data", "Hello SecondActivity")
+            val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
-        }
-
-        button1.setOnClickListener {
-            val intent = Intent("bit.lizeqing.activitytest.ACTION_START")
-            intent.addCategory("bit.lizeqing.activitytest.MY_CATEGORY")
-            intent.putExtra("extra_data", "Hello SecondActivity")
-            startActivityForResult(intent, 1)
         }
     }
 
