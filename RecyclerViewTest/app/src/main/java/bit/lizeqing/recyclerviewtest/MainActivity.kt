@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,16 +24,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFruits() {
         repeat(2) {
-            fruitList.add(Fruit("apple", R.drawable.apple_pic))
-            fruitList.add(Fruit("banana", R.drawable.banana_pic))
-            fruitList.add(Fruit("orange", R.drawable.orange_pic))
-            fruitList.add(Fruit("watermelon", R.drawable.watermelon_pic))
-            fruitList.add(Fruit("pear", R.drawable.pear_pic))
-            fruitList.add(Fruit("grape", R.drawable.grape_pic))
-            fruitList.add(Fruit("pineapple", R.drawable.pineapple_pic))
-            fruitList.add(Fruit("strawberry", R.drawable.strawberry_pic))
-            fruitList.add(Fruit("cherry", R.drawable.cherry_pic))
-            fruitList.add(Fruit("mango", R.drawable.mango_pic))
+            fruitList.add(Fruit(getRandomLengthString("apple"), R.drawable.apple_pic))
+            fruitList.add(Fruit(getRandomLengthString("banana"), R.drawable.banana_pic))
+            fruitList.add(Fruit(getRandomLengthString("orange"), R.drawable.orange_pic))
+            fruitList.add(Fruit(getRandomLengthString("watermelon"), R.drawable.watermelon_pic))
+            fruitList.add(Fruit(getRandomLengthString("pear"), R.drawable.pear_pic))
+            fruitList.add(Fruit(getRandomLengthString("grape"), R.drawable.grape_pic))
+            fruitList.add(Fruit(getRandomLengthString("pineapple"), R.drawable.pineapple_pic))
+            fruitList.add(Fruit(getRandomLengthString("strawberry"), R.drawable.strawberry_pic))
+            fruitList.add(Fruit(getRandomLengthString("cherry"), R.drawable.cherry_pic))
+            fruitList.add(Fruit(getRandomLengthString("mango"), R.drawable.mango_pic))
         }
     }
+
+    private fun getRandomLengthString(str: String): String {
+        val n = (1..10).random()
+        return buildString {
+            repeat(n) {
+                this.append(str)
+            }
+        }
+    }
+
 }
