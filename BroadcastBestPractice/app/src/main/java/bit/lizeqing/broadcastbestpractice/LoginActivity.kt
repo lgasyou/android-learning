@@ -1,5 +1,6 @@
 package bit.lizeqing.broadcastbestpractice
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,10 +12,32 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val prefs = getPreferences(Context.MODE_PRIVATE)
+        val isRemember = prefs.getBoolean("remember_password", false)
+        if (isRemember) {
+            val username = prefs.getString("account", "")
+            val password = prefs.getString("password", "")
+            accountEditText.setText(username)
+            passwordEditText.setText(password)
+            rememberPass.isChecked = true
+        }
+
         loginButton.setOnClickListener {
-            val account = accountEditText.text
-            val password = passwordEditText.text
-            if (account.toString() == "123456" && password.toString() == "123456") {
+            val account = accountEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            if (account == "123456" && password == "123456") {
+                val editor = getPreferences(Context.MODE_PRIVATE).edit()
+                if (rememberPass.isChecked) {
+                    editor.apply {
+                        putString("account", account)
+                        putString("password", password)
+                        putBoolean("remember_password", rememberPass.isChecked)
+                        apply()
+                    }
+                } else {
+                    editor.clear().apply()
+                }
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
