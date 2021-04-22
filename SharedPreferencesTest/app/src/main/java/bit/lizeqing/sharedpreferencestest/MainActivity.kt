@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.core.content.edit
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,11 +19,11 @@ class MainActivity : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-            val editor = getSharedPreferences("data", Context.MODE_PRIVATE).edit()
-            editor.putString("name", "Tomcat")
-            editor.putInt("age", 20)
-            editor.putBoolean("married", false)
-            editor.apply()
+            getSharedPreferences("data", Context.MODE_PRIVATE).edit {
+                putString("name", "Tomcat")
+                putInt("age", 20)
+                putBoolean("married", false)
+            }
         }
 
         val loadButton = findViewById<Button>(R.id.loadButton)
